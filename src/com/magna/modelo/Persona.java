@@ -1,4 +1,4 @@
-package Modelo;
+package com.magna.modelo;
 
 public class Persona {
     

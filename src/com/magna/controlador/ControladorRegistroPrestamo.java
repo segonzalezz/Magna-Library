@@ -1,8 +1,8 @@
-package Controlador;
+package com.magna.controlador;
 
-import Excepciones.PrestamoDuplicadoException;
-import Modelo.Prestamo;
-import Repository.PrestamoDao;
+import com.magna.excepciones.PrestamoDuplicadoException;
+import com.magna.modelo.Prestamo;
+import com.magna.repository.PrestamoDao;
 
 public class ControladorRegistroPrestamo {
     
@@ -13,9 +13,6 @@ public class ControladorRegistroPrestamo {
     }
     
     public boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException {
-        if (!prestamoDao.comprobarPrestamo(prestamo.getId_prestamo())) {
-            throw new PrestamoDuplicadoException("El alquiler ya existe en la base de datos");
-        }
         return prestamoDao.registrarPrestamo(prestamo);
     }
 

@@ -1,6 +1,6 @@
-package Controlador;
+package com.magna.controlador;
 
-import Repository.SesionDao;
+import com.magna.repository.SesionDao;
 
 public class ControladorInicioSesion {
     private SesionDao sesionDao;

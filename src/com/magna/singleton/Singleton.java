@@ -1,4 +1,4 @@
-package Singleton;
+package com.magna.singleton;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

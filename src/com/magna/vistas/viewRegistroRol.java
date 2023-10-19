@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package com.magna.vistas;
 
-import Controlador.ControladorRegistroRol;
-import Excepciones.RolDuplicadoException;
-import Modelo.Rol;
+import com.magna.controlador.ControladorRegistroRol;
+import com.magna.excepciones.RolDuplicadoException;
+import com.magna.modelo.Rol;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 

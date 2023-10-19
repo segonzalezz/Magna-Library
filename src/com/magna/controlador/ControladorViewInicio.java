@@ -1,6 +1,6 @@
-package Controlador;
+package com.magna.controlador;
 
-import Singleton.Singleton;
+import com.magna.singleton.Singleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;

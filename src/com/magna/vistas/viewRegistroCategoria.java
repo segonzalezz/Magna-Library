@@ -1,8 +1,8 @@
-package View;
+package com.magna.vistas;
 
-import Controlador.ControladorRegistroCategoria;
-import Excepciones.CategoriaDuplicadaException;
-import Modelo.Categoria;
+import com.magna.controlador.ControladorRegistroCategoria;
+import com.magna.excepciones.CategoriaDuplicadaException;
+import com.magna.modelo.Categoria;
 import javax.swing.JOptionPane;
 
 public class viewRegistroCategoria extends javax.swing.JFrame {

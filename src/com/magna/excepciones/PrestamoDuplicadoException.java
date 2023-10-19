@@ -1,4 +1,4 @@
-package Excepciones;
+package com.magna.excepciones;
 
 public class PrestamoDuplicadoException extends Exception{
     

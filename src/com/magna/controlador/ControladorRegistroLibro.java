@@ -1,7 +1,7 @@
-package Controlador;
-import Excepciones.LibroDuplicadoException;
-import Modelo.Libro;
-import Repository.LibroDao;
+package com.magna.controlador;
+import com.magna.excepciones.LibroDuplicadoException;
+import com.magna.modelo.Libro;
+import com.magna.repository.LibroDao;
 import javax.swing.JComboBox;
 
 public class ControladorRegistroLibro {
@@ -13,9 +13,6 @@ public class ControladorRegistroLibro {
     }
     
     public boolean registrarLibro(Libro libro) throws LibroDuplicadoException{
-       if(!libroDao.comprobarLibro(libro.getId_libro())){
-           throw new LibroDuplicadoException("El libro ya existe en la base de datos");
-       }
        return libroDao.registrarLibro(libro);
     }
     

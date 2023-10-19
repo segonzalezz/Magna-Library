@@ -1,6 +1,6 @@
-package Repository;
-import Modelo.Usuario;
-import Singleton.Singleton;
+package com.magna.repository;
+import com.magna.modelo.Usuario;
+import com.magna.singleton.Singleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

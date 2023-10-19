@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package com.magna.vistas;
 
-import Controlador.ControladorRegistroUsuario;
-import Modelo.Usuario;
-import Repository.SesionMain;
+import com.magna.controlador.ControladorRegistroUsuario;
+import com.magna.modelo.Usuario;
+import com.magna.repository.SesionMain;
 
 public class viewMenuAdmin extends javax.swing.JFrame {
 

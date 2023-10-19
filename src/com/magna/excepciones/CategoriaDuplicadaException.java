@@ -1,4 +1,4 @@
-package Excepciones;
+package com.magna.excepciones;
 
 public class CategoriaDuplicadaException extends Exception {
 

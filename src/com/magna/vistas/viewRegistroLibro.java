@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package com.magna.vistas;
 
-import Controlador.ControladorRegistroCategoria;
-import Controlador.ControladorRegistroLibro;
-import Excepciones.LibroDuplicadoException;
-import Modelo.Libro;
+import com.magna.controlador.ControladorRegistroCategoria;
+import com.magna.controlador.ControladorRegistroLibro;
+import com.magna.excepciones.LibroDuplicadoException;
+import com.magna.modelo.Libro;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;

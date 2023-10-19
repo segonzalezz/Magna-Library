@@ -1,9 +1,9 @@
-package Controlador;
+package com.magna.controlador;
 
 
-import Excepciones.RolDuplicadoException;
-import Modelo.Rol;
-import Repository.RolDao;
+import com.magna.excepciones.RolDuplicadoException;
+import com.magna.modelo.Rol;
+import com.magna.repository.RolDao;
 import javax.swing.JComboBox;
 
 public class ControladorRegistroRol {
@@ -15,9 +15,6 @@ public class ControladorRegistroRol {
     }
 
     public boolean registrarRol(Rol rol) throws RolDuplicadoException {
-        if (!rolDao.comprobarRol(rol.getId_rol())) {
-            throw new RolDuplicadoException("El rol ya existe en la base de datos");
-        }
         return rolDao.registrarRol(rol);
     }
 

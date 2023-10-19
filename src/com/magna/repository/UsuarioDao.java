@@ -1,8 +1,8 @@
-package Repository;
+package com.magna.repository;
 
-import Modelo.Usuario;
-import Excepciones.UsuarioDuplicadoException;
-import Singleton.Singleton;
+import com.magna.modelo.Usuario;
+import com.magna.excepciones.UsuarioDuplicadoException;
+import com.magna.singleton.Singleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

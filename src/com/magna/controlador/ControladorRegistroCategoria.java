@@ -1,9 +1,9 @@
-package Controlador;
+package com.magna.controlador;
 
 
-import Excepciones.CategoriaDuplicadaException;
-import Modelo.Categoria;
-import Repository.CategoriaDao;
+import com.magna.excepciones.CategoriaDuplicadaException;
+import com.magna.modelo.Categoria;
+import com.magna.repository.CategoriaDao;
 import javax.swing.JComboBox;
 
 public class ControladorRegistroCategoria {
@@ -15,10 +15,7 @@ public class ControladorRegistroCategoria {
     }
     
     public boolean registrarCategoria(Categoria categoria) throws CategoriaDuplicadaException {
-        if (!categoriaDao.comprobarCategoria(categoria.getId_categoria())) {
-            throw new CategoriaDuplicadaException("La categoria ya existe en la base de datos");
-        }
-        return categoriaDao.registrarCategoria(categoria);
+        return categoriaDao.registrarCategoria(categoria); 
     }
     
     public Categoria obtenerCategoria(String id_categoria) {
@@ -30,7 +27,7 @@ public class ControladorRegistroCategoria {
     }
     
     public void cargarCategoriasComboBox(JComboBox<String> comboBox) {
-        categoriaDao.mostrarCategoriasEnComboBox(comboBox);
+        categoriaDao.mostrarCategoriaEnComboBox(comboBox);
     }
     
 }

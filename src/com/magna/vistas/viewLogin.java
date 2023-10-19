@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package com.magna.vistas;
 
 
-import Controlador.ControladorInicioSesion;
-import Modelo.Usuario;
-import Repository.SesionMain;
+import com.magna.controlador.ControladorInicioSesion;
+import com.magna.modelo.Usuario;
+import com.magna.repository.SesionMain;
 import javax.swing.JOptionPane;
-import Singleton.Singleton;
+import com.magna.singleton.Singleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

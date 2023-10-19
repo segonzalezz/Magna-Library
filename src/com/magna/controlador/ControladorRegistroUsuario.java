@@ -1,8 +1,8 @@
-package Controlador;
+package com.magna.controlador;
 
-import Excepciones.UsuarioDuplicadoException;
-import Modelo.Usuario;
-import Repository.UsuarioDao;
+import com.magna.excepciones.UsuarioDuplicadoException;
+import com.magna.modelo.Usuario;
+import com.magna.repository.UsuarioDao;
 import javax.swing.JLabel;
 
 public class ControladorRegistroUsuario {

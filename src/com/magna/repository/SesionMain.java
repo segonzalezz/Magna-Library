@@ -1,6 +1,6 @@
-package Repository;
+package com.magna.repository;
 
-import Modelo.Usuario;
+import com.magna.modelo.Usuario;
 
 public class SesionMain {
     
