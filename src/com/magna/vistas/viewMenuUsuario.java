@@ -235,7 +235,7 @@ public class viewMenuUsuario extends javax.swing.JFrame {
 
         jMenu1.setText("Menu");
 
-        jMenuItem1.setText("Atras");
+        jMenuItem1.setText("Cerrar Sesión");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

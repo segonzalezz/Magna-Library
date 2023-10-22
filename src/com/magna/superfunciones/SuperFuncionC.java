@@ -1,6 +1,5 @@
 package com.magna.superfunciones;
 import com.magna.excepciones.CategoriaDuplicadaException;
-import com.magna.interfaces.CategoriaDaoInterface;
 import com.magna.modelo.Categoria;
 import com.magna.singleton.Singleton;
 import java.sql.Connection;

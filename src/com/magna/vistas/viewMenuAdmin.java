@@ -11,6 +11,7 @@ import com.magna.repository.SesionMain;
 public class viewMenuAdmin extends javax.swing.JFrame {
 
     ControladorRegistroUsuario controlador;
+
     public viewMenuAdmin() {
         initComponents();
         setLocationRelativeTo(this);
@@ -18,7 +19,7 @@ public class viewMenuAdmin extends javax.swing.JFrame {
         Usuario usuario = SesionMain.getUsuarioAutenticado();
         String nombreUsuario = usuario.getUser_u();
         controlador.imprimirInformacionUsuarioRegistrado(jLabel10, jLabel11, jLabel12, jLabel13, jLabel14, jLabel15, nombreUsuario);
-       
+
     }
 
     /**
@@ -65,6 +66,7 @@ public class viewMenuAdmin extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -244,7 +246,7 @@ public class viewMenuAdmin extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Registros");
@@ -319,6 +321,19 @@ public class viewMenuAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu6.setText("Generar PDF");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
+
         jMenu5.setText("Cerrar Sesión");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -349,9 +364,9 @@ public class viewMenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       viewRegistroRol viewRegisterRol = new viewRegistroRol();
-       viewRegisterRol.setVisible(true);
-       this.dispose();
+        viewRegistroRol viewRegisterRol = new viewRegistroRol();
+        viewRegisterRol.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -361,13 +376,13 @@ public class viewMenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-        
+
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-         viewLogin viewLogin = new viewLogin();
-         viewLogin.setVisible(true);
-         this.dispose();
+        viewLogin viewLogin = new viewLogin();
+        viewLogin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -405,6 +420,18 @@ public class viewMenuAdmin extends javax.swing.JFrame {
         viewGestionLibros.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+//        viewGestionPDF viewGestionPDF = new viewGestionPDF();
+//        viewGestionPDF.setVisible(true);
+//        this.dispose();
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        viewGestionPDF viewGestionPDF = new viewGestionPDF();
+        viewGestionPDF.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -467,6 +494,7 @@ public class viewMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;

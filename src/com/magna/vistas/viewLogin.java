@@ -10,6 +10,8 @@ import com.magna.modelo.Usuario;
 import com.magna.repository.SesionMain;
 import javax.swing.JOptionPane;
 import com.magna.singleton.Singleton;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,6 +52,7 @@ public class viewLogin extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
