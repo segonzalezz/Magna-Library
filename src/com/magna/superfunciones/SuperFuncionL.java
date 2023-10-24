@@ -151,38 +151,40 @@ public class SuperFuncionL {
             }
         }
     }
-    
-    public static boolean devolverLibro(String id_libro){
-         Connection conexion = null;
-        try {
-            conexion = Singleton.getInstancia().conectar();
-            String selectQuery = "SELECT id_prestamo FROM prestamo WHERE cod_libro = ?";
-            PreparedStatement selectStatement = conexion.prepareStatement(selectQuery);
-            selectStatement.setString(1, id_libro);
-            ResultSet resultSet = selectStatement.executeQuery();
-            if (resultSet.next()) {
-                String id_prestamo = resultSet.getString("id_prestamo");
-                String deleteQuery = "DELETE FROM prestamo WHERE id_prestamo = ?";
-                PreparedStatement deleteStatement = conexion.prepareStatement(deleteQuery);
-                deleteStatement.setString(1, id_prestamo);
-                int rowsDeleted = deleteStatement.executeUpdate();
-                if (rowsDeleted > 0) {
-                    String updateQuery = "UPDATE libro SET can_stock = can_stock + 1 WHERE id_libro = ?";
-                    PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
-                    updateStatement.setString(1, id_libro);
-                    int rowsUpdated = updateStatement.executeUpdate();
-                    return rowsUpdated > 0;
-                }
-            }
-            return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            if (conexion != null) {
-                Singleton.getInstancia().desconectar();
-            }
-        }
-    }
+    //Metodo va para su respectiva superFuncion
+    //Metodo tiene su propia interface
+    //Y tambien metodo tiene su propio controlador.
+//    public static boolean devolverLibro(String id_libro){
+//         Connection conexion = null;
+//        try {
+//            conexion = Singleton.getInstancia().conectar();
+//            String selectQuery = "SELECT id_prestamo FROM prestamo WHERE cod_libro = ?";
+//            PreparedStatement selectStatement = conexion.prepareStatement(selectQuery);
+//            selectStatement.setString(1, id_libro);
+//            ResultSet resultSet = selectStatement.executeQuery();
+//            if (resultSet.next()) {
+//                String id_prestamo = resultSet.getString("id_prestamo");
+//                String deleteQuery = "DELETE FROM prestamo WHERE id_prestamo = ?";
+//                PreparedStatement deleteStatement = conexion.prepareStatement(deleteQuery);
+//                deleteStatement.setString(1, id_prestamo);
+//                int rowsDeleted = deleteStatement.executeUpdate();
+//                if (rowsDeleted > 0) {
+//                    String updateQuery = "UPDATE libro SET can_stock = can_stock + 1 WHERE id_libro = ?";
+//                    PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
+//                    updateStatement.setString(1, id_libro);
+//                    int rowsUpdated = updateStatement.executeUpdate();
+//                    return rowsUpdated > 0;
+//                }
+//            }
+//            return false;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return false;
+//        } finally {
+//            if (conexion != null) {
+//                Singleton.getInstancia().desconectar();
+//            }
+//        }
+//    }
 
 }

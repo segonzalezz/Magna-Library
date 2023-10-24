@@ -50,11 +50,11 @@ public class LibroDao implements LibroDaoInterface {
         return superFuncion.actualizarStockLibro(id_libro, can_stock);
     }
     
-    @Override
-    public boolean devolverLibro(String id_libro){
-        SuperFuncionL superFuncion = new SuperFuncionL();
-        return superFuncion.devolverLibro(id_libro);
-    }
+//    @Override
+//    public boolean devolverLibro(String id_libro){
+//        SuperFuncionL superFuncion = new SuperFuncionL();
+//        return superFuncion.devolverLibro(id_libro);
+//    }
     
 //    public boolean registrarLibro(Libro libro) throws LibroDuplicadoException {
 //        Connection conexion = null;

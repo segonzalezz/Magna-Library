@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.magna.modelo.Categoria;
 import com.magna.modelo.Libro;
+import com.magna.modelo.Prestamo;
 import com.magna.modelo.Rol;
 import com.magna.modelo.Usuario;
 import com.magna.superfunciones.SuperFuncionPDF;
@@ -45,6 +46,34 @@ public class PDFCreation {
             documento.close();
             JOptionPane.showMessageDialog(null, "Reporte creado.");
         }catch (DocumentException | HeadlessException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void imprimirInformacionP(String nombreTabla){
+        Document documento = new Document();
+        try{
+            String nombreArchivo = "C:\\Users\\Santiago Alzate\\Desktop\\prestamos.pdf";
+            PdfWriter.getInstance(documento, new FileOutputStream(nombreArchivo));
+            documento.open();
+            PdfPTable tabla = new PdfPTable(5);
+            tabla.addCell("Código Prestamo");
+            tabla.addCell("Fecha Inicio Prestamo");
+            tabla.addCell("Fecha Finaliza Prestamo");
+            tabla.addCell("Código Usuario");
+            tabla.addCell("Código Libro");
+            List <Prestamo> prestamos = SuperFuncionPDF.obtenerTodosLosPrestamos();
+            for(Prestamo prestamo: prestamos){
+                tabla.addCell(prestamo.getId_prestamo());
+                tabla.addCell(prestamo.getDateS_prestamo());
+                tabla.addCell(prestamo.getDateF_prestamo());
+                tabla.addCell(prestamo.getCod_user());
+                tabla.addCell(prestamo.getCod_libro());
+            }
+            documento.add(tabla);
+            documento.close();
+            JOptionPane.showMessageDialog(null, "Reporte creado.");
+        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
             e.printStackTrace();
         }
     }

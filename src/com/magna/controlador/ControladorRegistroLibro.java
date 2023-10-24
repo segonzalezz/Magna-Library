@@ -32,8 +32,8 @@ public class ControladorRegistroLibro {
         return libroDao.actualizarStockLibro(id_libro, can_stock);
     }
     
-    public boolean devolverLibro(String id_libro){
-        return libroDao.devolverLibro(id_libro);
-    }
+//    public boolean devolverLibro(String id_libro){
+//        return libroDao.devolverLibro(id_libro);
+//    }
     
 }

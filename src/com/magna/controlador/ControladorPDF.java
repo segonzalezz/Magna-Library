@@ -6,17 +6,17 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class ControladorPDF {
-
+    
     private PDFDao pdfDao;
-
+    
     public ControladorPDF() {
         pdfDao = PDFDao.getInstancia();
     }
-
+    
     public void mostrarTablasDisponibles(JComboBox comboBox) {
         pdfDao.mostrarTablasDisponibles(comboBox);
     }
-
+    
     public boolean generarPDF(JComboBox comboBox) {
         String tablaSeleccionada = (String) comboBox.getSelectedItem();
         if (tablaSeleccionada.equals("categoria")) {
@@ -28,10 +28,12 @@ public class ControladorPDF {
             PDFCreation.imprimirInformacionL(tablaSeleccionada);
         } else if (tablaSeleccionada.equals("usuario")) {
             PDFCreation.imprimirInformacionU(tablaSeleccionada);
+        } else if (tablaSeleccionada.equals("prestamo")) {
+            PDFCreation.imprimirInformacionP(tablaSeleccionada);
         } else {
             JOptionPane.showMessageDialog(null, "No se encontro la selección");
         }
         return false;
     }
-
+    
 }

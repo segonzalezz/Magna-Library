@@ -191,19 +191,7 @@ public class viewLibrosAlquilados extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnDevolverLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverLibrosActionPerformed
-        int filaSeleccionada = tableL.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            String idLibro = (String) tableL.getValueAt(filaSeleccionada, 1);
-            if (controlador.devolverLibro(idLibro)) {
-                DefaultTableModel model = (DefaultTableModel) tableL.getModel();
-                model.removeRow(filaSeleccionada);
-                JOptionPane.showMessageDialog(null, "Libro devuelto con código: " + idLibro);
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo realizar la devolución del libro con código: " + idLibro);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecciona un libro para devolver");
-        }
+        
     }//GEN-LAST:event_btnDevolverLibrosActionPerformed
 
     /**

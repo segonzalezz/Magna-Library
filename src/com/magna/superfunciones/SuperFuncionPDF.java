@@ -2,6 +2,7 @@ package com.magna.superfunciones;
 
 import com.magna.modelo.Categoria;
 import com.magna.modelo.Libro;
+import com.magna.modelo.Prestamo;
 import com.magna.modelo.Rol;
 import com.magna.modelo.Usuario;
 import com.magna.singleton.Singleton;
@@ -66,6 +67,34 @@ public class SuperFuncionPDF {
         return libros;  
     }
     
+    public static List<Prestamo> obtenerTodosLosPrestamos(){
+        List<Prestamo> prestamos = new ArrayList<>();
+        Connection conexion = null;
+        try{
+            conexion = Singleton.getInstancia().conectar();
+            String selectQuery = "SELECT * FROM prestamo";
+            try(PreparedStatement preparedStatement = conexion.prepareStatement(selectQuery);
+                ResultSet resultSet = preparedStatement.executeQuery()){
+                while(resultSet.next()){
+                    String id_prestamo = resultSet.getString("id_prestamo");
+                    String dateS_prestamo = resultSet.getString("dateS_prestamo");
+                    String dateF_prestamo = resultSet.getString("dateF_prestamo");
+                    String cod_user = resultSet.getString("cod_user");
+                    String cod_libro = resultSet.getString("cod_libro");
+                    Prestamo prestamo = new Prestamo(id_prestamo, dateS_prestamo, dateF_prestamo, cod_user, cod_libro);
+                    prestamos.add(prestamo);
+                }
+            }  
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conexion != null) {
+                Singleton.getInstancia().desconectar();
+            }
+        }
+        return prestamos;
+    }
+    
     public static List<Usuario> obtenerTodosLosUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
         Connection conexion = null;
@@ -94,7 +123,6 @@ public class SuperFuncionPDF {
             }
         }
         return usuarios;
-        
     }
     
     public static List<Rol> obtenerTodosLosRoles(){

@@ -11,6 +11,6 @@ public interface LibroDaoInterface {
     boolean eliminarLibro(String id_libro);
     void mostrarLibrosEnComboBox(JComboBox<String> comboBox);
     boolean actualizarStockLibro(String id_libro, int can_stock);
-    boolean devolverLibro(String id_libro);
+//    boolean devolverLibro(String id_libro);
     
 }
