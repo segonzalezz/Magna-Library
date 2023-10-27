@@ -1,6 +1,7 @@
 package com.magna.superfunciones;
 
 import com.magna.excepciones.LibroDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.modelo.Libro;
 import com.magna.singleton.Singleton;
 import java.sql.Connection;
@@ -131,8 +132,11 @@ public class SuperFuncionL {
             }
         }
     }
-    
-    public static boolean actualizarStockLibro(String id_libro, int can_stock){
+
+    public static boolean actualizarStockLibro(String id_libro, int can_stock) throws StockInsuficienteException {
+        if (can_stock == 0) {
+            throw new StockInsuficienteException("No hay suficiente stock para realizar el préstamo.");
+        }
         Connection conexion = null;
         try {
             conexion = Singleton.getInstancia().conectar();

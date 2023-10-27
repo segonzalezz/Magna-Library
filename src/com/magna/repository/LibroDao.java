@@ -1,6 +1,7 @@
 package com.magna.repository;
 
 import com.magna.excepciones.LibroDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.interfaces.LibroDaoInterface;
 import com.magna.modelo.Libro;
 import com.magna.superfunciones.SuperFuncionL;
@@ -45,7 +46,7 @@ public class LibroDao implements LibroDaoInterface {
     }
     
     @Override
-    public boolean actualizarStockLibro(String id_libro, int can_stock) { 
+    public boolean actualizarStockLibro(String id_libro, int can_stock) throws StockInsuficienteException { 
         SuperFuncionL superFuncion = new SuperFuncionL();
         return superFuncion.actualizarStockLibro(id_libro, can_stock);
     }

@@ -3,14 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.magna.vistas;
+import com.magna.controlador.ControladorDevolucion;
 import com.magna.controlador.ControladorRegistroLibro;
-import com.magna.controlador.ControladorRegistroPrestamo;
+import com.magna.excepciones.DevolucionDuplicadaException;
+import com.magna.excepciones.StockInsuficienteException;
+import com.magna.modelo.Devolucion;
+import com.magna.modelo.Usuario;
 import com.magna.repository.SesionMain;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.magna.singleton.Singleton;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -21,10 +27,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class viewLibrosAlquilados extends javax.swing.JFrame {
 
-    ControladorRegistroLibro controlador;
+    ControladorDevolucion controlador;
+    ControladorRegistroLibro controladorDos;
     public viewLibrosAlquilados() {
         initComponents();
-        controlador = new ControladorRegistroLibro();
+        controlador = new ControladorDevolucion();
+        controladorDos = new ControladorRegistroLibro();
         setLocationRelativeTo(this);
         String cod_user = SesionMain.getUsuarioAutenticado().getUser_u();
         mostrarLibrosPrestados(cod_user, tableL);
@@ -63,7 +71,6 @@ public class viewLibrosAlquilados extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.err.println(ex.toString());
         }
-
 }
 
     /**
@@ -191,9 +198,44 @@ public class viewLibrosAlquilados extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnDevolverLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverLibrosActionPerformed
-        
+        Usuario usuarioAutenticado = SesionMain.getUsuarioAutenticado();
+        int filaSeleccionada = tableL.getSelectedRow();
+        if(filaSeleccionada != -1){
+            String cod_prestamo = (String) tableL.getValueAt(filaSeleccionada, 0);
+            LocalDate fechaActual = LocalDate.now();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String dateF_devolucion = fechaActual.format(formato);
+            String des_devolucion = "Opcional";
+            Devolucion devolucion = new Devolucion(cod_prestamo, dateF_devolucion, des_devolucion);
+            String cod_user = usuarioAutenticado.getUser_u();
+            String cod_libro = (String) tableL.getValueAt(filaSeleccionada, 1);
+            try {
+                if (controlador.registrarDevolucion(devolucion) && controlador.devolverPrestamo(cod_user, cod_libro) && controladorDos.actualizarStockLibro(cod_libro, +1) ) {
+                    DefaultTableModel model = (DefaultTableModel) tableL.getModel();
+                    model.removeRow(filaSeleccionada);
+                    JOptionPane.showMessageDialog(null, "Devolucion del libro con exito: " + cod_prestamo);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pude realizar la devolución: " + cod_prestamo);
+                }
+            } catch (DevolucionDuplicadaException | StockInsuficienteException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona un prestamo que deseas finalizar y realizar su devolución");
+        }
     }//GEN-LAST:event_btnDevolverLibrosActionPerformed
 
+//    private void registrarDevolucion() throws DevolucionDuplicadaException{
+//        int filaSeleccionada = tableL.getSelectedRow();
+//        String cod_prestamo = (String) tableL.getValueAt(filaSeleccionada, 0);
+//        LocalDate fechaActual = LocalDate.now();
+//        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        String dateF_devolucion = fechaActual.format(formato);
+//        String des_devolucion = "Opcional";
+//        Devolucion devolucion = new Devolucion(cod_prestamo, dateF_devolucion, des_devolucion);
+//        controlador.registrarDevolucion(devolucion);
+//    }
+    
     /**
      * @param args the command line arguments
      */

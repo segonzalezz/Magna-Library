@@ -10,8 +10,6 @@ import com.magna.modelo.Usuario;
 import com.magna.repository.SesionMain;
 import javax.swing.JOptionPane;
 import com.magna.singleton.Singleton;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

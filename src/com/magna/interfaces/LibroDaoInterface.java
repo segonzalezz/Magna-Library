@@ -1,6 +1,7 @@
 package com.magna.interfaces;
 
 import com.magna.excepciones.LibroDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.modelo.Libro;
 import javax.swing.JComboBox;
 
@@ -10,7 +11,7 @@ public interface LibroDaoInterface {
     Libro obtenerLibro(String id_libro);
     boolean eliminarLibro(String id_libro);
     void mostrarLibrosEnComboBox(JComboBox<String> comboBox);
-    boolean actualizarStockLibro(String id_libro, int can_stock);
+    boolean actualizarStockLibro(String id_libro, int can_stock) throws StockInsuficienteException;
 //    boolean devolverLibro(String id_libro);
     
 }

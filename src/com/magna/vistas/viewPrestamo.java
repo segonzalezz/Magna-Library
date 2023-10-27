@@ -7,11 +7,14 @@ package com.magna.vistas;
 import com.magna.controlador.ControladorRegistroLibro;
 import com.magna.controlador.ControladorRegistroPrestamo;
 import com.magna.excepciones.PrestamoDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.modelo.Prestamo;
 import com.magna.modelo.Usuario;
 import com.magna.repository.SesionMain;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -259,6 +262,8 @@ public class viewPrestamo extends javax.swing.JFrame {
         } catch (PrestamoDuplicadoException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             limpiarCampos();
+        } catch (StockInsuficienteException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }        
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

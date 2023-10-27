@@ -1,6 +1,7 @@
 package com.magna.superfunciones;
 
 import com.magna.modelo.Categoria;
+import com.magna.modelo.Historial;
 import com.magna.modelo.Libro;
 import com.magna.modelo.Prestamo;
 import com.magna.modelo.Rol;
@@ -37,6 +38,11 @@ public class SuperFuncionPDF {
             }
         }
     }
+    
+//    public static List<Historial> obtenerTodosLasT(){
+//     List<Historial> transacciones = new ArrayList<>();
+//     Connection conexion = null;
+//    }
     
     public static List<Libro> obtenerTodosLosLibros(){
        List<Libro> libros = new ArrayList<>();

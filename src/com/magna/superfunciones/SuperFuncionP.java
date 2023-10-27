@@ -1,12 +1,15 @@
-package com.magna.superfunciones;
+    package com.magna.superfunciones;
 
 import com.magna.excepciones.PrestamoDuplicadoException;
+import com.magna.modelo.Historial;
 import com.magna.modelo.Prestamo;
 import com.magna.singleton.Singleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class SuperFuncionP {
 
@@ -25,9 +28,12 @@ public class SuperFuncionP {
             preparedStatement.setString(4, prestamo.getCod_user());
             preparedStatement.setString(5, prestamo.getCod_libro());
             preparedStatement.executeUpdate();
+            Historial historial = new Historial(prestamo.getId_prestamo(), "Prestamo", prestamo.getCod_user(), prestamo.getCod_libro(),
+            obtenerFechaActual(), "Se registro el prestamo: " + prestamo.getId_prestamo());
+            SuperFuncionH.registrarHistorialP(historial);
             return true;
         } catch (SQLException e) {
-            throw new PrestamoDuplicadoException("Error al registrar el prestamo");
+            throw new PrestamoDuplicadoException("Error al registrar el préstamo");
         } finally {
             if (conexion != null) {
                 Singleton.getInstancia().desconectar();
@@ -76,4 +82,12 @@ public class SuperFuncionP {
         }
         return false;
     }
+    
+    public static String obtenerFechaActual() {
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaDevolucion = fechaActual.format(formato);
+        return fechaDevolucion;
+    }
+
 }
