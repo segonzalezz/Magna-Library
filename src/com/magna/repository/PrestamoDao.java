@@ -1,5 +1,6 @@
 package com.magna.repository;
 import com.magna.excepciones.PrestamoDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.interfaces.PrestamoDaoInterface;
 import com.magna.modelo.Prestamo;
 import com.magna.superfunciones.SuperFuncionP;
@@ -22,7 +23,7 @@ public class PrestamoDao implements PrestamoDaoInterface{
     }
     
     @Override
-    public boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException{
+    public boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException, StockInsuficienteException{
         SuperFuncionP superFuncion = new SuperFuncionP();
         return superFuncion.registrarPrestamo(prestamo);   
     }

@@ -155,6 +155,28 @@ public class SuperFuncionL {
             }
         }
     }
+    
+    public static int obtenerStockLibro(String id_libro) {
+        Connection conexion = null;
+        int stockActual = 0;
+        try {
+            conexion = Singleton.getInstancia().conectar();
+            String selectQuery = "SELECT can_stock FROM libro WHERE id_libro = ?";
+            PreparedStatement preparedStatement = conexion.prepareStatement(selectQuery);
+            preparedStatement.setString(1, id_libro);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                stockActual = resultSet.getInt("can_stock");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conexion != null) {
+                Singleton.getInstancia().desconectar();
+            }
+        }
+        return stockActual;
+    }
     //Metodo va para su respectiva superFuncion
     //Metodo tiene su propia interface
     //Y tambien metodo tiene su propio controlador.

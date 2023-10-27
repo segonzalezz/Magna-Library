@@ -1,6 +1,7 @@
 package com.magna.controlador;
 
 import com.magna.excepciones.PrestamoDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.modelo.Prestamo;
 import com.magna.repository.PrestamoDao;
 
@@ -12,7 +13,7 @@ public class ControladorRegistroPrestamo {
         prestamoDao = PrestamoDao.getInstancia();
     }
     
-    public boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException {
+    public boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException, StockInsuficienteException {
         return prestamoDao.registrarPrestamo(prestamo);
     }
 

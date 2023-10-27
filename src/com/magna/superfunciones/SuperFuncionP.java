@@ -1,6 +1,7 @@
     package com.magna.superfunciones;
 
 import com.magna.excepciones.PrestamoDuplicadoException;
+import com.magna.excepciones.StockInsuficienteException;
 import com.magna.modelo.Historial;
 import com.magna.modelo.Prestamo;
 import com.magna.singleton.Singleton;
@@ -13,25 +14,30 @@ import java.time.format.DateTimeFormatter;
 
 public class SuperFuncionP {
 
-    public static boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException {
+    public static boolean registrarPrestamo(Prestamo prestamo) throws PrestamoDuplicadoException, StockInsuficienteException {
         Connection conexion = null;
         try {
-            if (!comprobarPrestamo(prestamo.getId_prestamo())) {
-                return false;
+            int stockActual = SuperFuncionL.obtenerStockLibro(prestamo.getCod_libro());
+            if (stockActual > 0) {
+                if (!comprobarPrestamo(prestamo.getId_prestamo())) {
+                    return false;
+                }
+                conexion = Singleton.getInstancia().conectar();
+                String insertQuery = "INSERT INTO prestamo (id_prestamo, dateS_prestamo, dateF_prestamo, cod_user, cod_libro) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conexion.prepareStatement(insertQuery);
+                preparedStatement.setString(1, prestamo.getId_prestamo());
+                preparedStatement.setString(2, prestamo.getDateS_prestamo());
+                preparedStatement.setString(3, prestamo.getDateF_prestamo());
+                preparedStatement.setString(4, prestamo.getCod_user());
+                preparedStatement.setString(5, prestamo.getCod_libro());
+                preparedStatement.executeUpdate();
+                Historial historial = new Historial(prestamo.getId_prestamo(), "Prestamo", prestamo.getCod_user(), prestamo.getCod_libro(),
+                obtenerFechaActual(), "Se registro el prestamo: " + prestamo.getId_prestamo());
+                SuperFuncionH.registrarHistorialP(historial);
+                return true;
+            } else {
+                throw new StockInsuficienteException("No hay suficiente stock para realizar el préstamo.");
             }
-            conexion = Singleton.getInstancia().conectar();
-            String insertQuery = "INSERT INTO prestamo (id_prestamo, dateS_prestamo, dateF_prestamo, cod_user, cod_libro) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = conexion.prepareStatement(insertQuery);
-            preparedStatement.setString(1, prestamo.getId_prestamo());
-            preparedStatement.setString(2, prestamo.getDateS_prestamo());
-            preparedStatement.setString(3, prestamo.getDateF_prestamo());
-            preparedStatement.setString(4, prestamo.getCod_user());
-            preparedStatement.setString(5, prestamo.getCod_libro());
-            preparedStatement.executeUpdate();
-            Historial historial = new Historial(prestamo.getId_prestamo(), "Prestamo", prestamo.getCod_user(), prestamo.getCod_libro(),
-            obtenerFechaActual(), "Se registro el prestamo: " + prestamo.getId_prestamo());
-            SuperFuncionH.registrarHistorialP(historial);
-            return true;
         } catch (SQLException e) {
             throw new PrestamoDuplicadoException("Error al registrar el préstamo");
         } finally {
